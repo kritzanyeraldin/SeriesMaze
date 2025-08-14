@@ -5,13 +5,13 @@ import './App.css'
 
 function App() {
 	const [count, setCount] = useState(0)
-
 	return (
 		<>
 			<div className='bg-black flex'>
 				<a
 					href='https://vite.dev'
 					target='_blank'
+					rel='noreferrer'
 				>
 					<img
 						src={viteLogo}
@@ -22,6 +22,7 @@ function App() {
 				<a
 					href='https://react.dev'
 					target='_blank'
+					rel='noreferrer'
 				>
 					<img
 						src={reactLogo}
