@@ -1,3 +1,5 @@
 export { default as Header } from './Header'
-export { default as MovieCard } from './MovieCard'
+export { default as TvShowCard } from './TvShowCard'
 export { default as Footer } from './Footer'
+export { default as PaginatedGrid } from './PaginatedGrid'
+export { default as Filters } from './Filters'

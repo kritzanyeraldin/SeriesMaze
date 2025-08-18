@@ -3,7 +3,6 @@ import './App.css'
 import MainLayout from './layout/MainLayout'
 import MovieView from './Views/MovieView'
 import ErrorView from './Views/ErrorView'
-import MovieDescriptionView from './Views/MovieDescriptionView'
 
 const router = createBrowserRouter([
 	{
@@ -13,10 +12,6 @@ const router = createBrowserRouter([
 			{
 				index: true,
 				element: <MovieView />
-			},
-			{
-				path: '/movie',
-				element: <MovieDescriptionView />
 			}
 		]
 	}
