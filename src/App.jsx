@@ -1,17 +1,15 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import './App.css'
-import MainLayout from './layout/MainLayout'
-import MovieView from './Views/MovieView'
-import ErrorView from './Views/ErrorView'
+import { MainLayout } from './layouts'
+import { ErrorView, TvShowsView } from './Views'
 
 const router = createBrowserRouter([
 	{
 		element: <MainLayout />,
-		errorElementent: <ErrorView />,
+		errorElement: <ErrorView />,
 		children: [
 			{
 				index: true,
-				element: <MovieView />
+				element: <TvShowsView />
 			}
 		]
 	}

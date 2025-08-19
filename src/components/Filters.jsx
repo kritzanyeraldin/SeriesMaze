@@ -1,15 +1,9 @@
 import { useMemo } from 'react'
 import { useState } from 'react'
-
-// const DEFAULT_STATUSES = ['All', 'Running', 'Ended', 'To Be Determined']
-// const DEFAULT_ORDER_BY = [
-// 	{ value: 'ratingDesc', label: 'Highest Rating' },
-// 	{ value: 'ratingAsc', label: 'Lowest Rating' },
-// 	{ value: 'titleAsc', label: 'Title A–Z' },
-// 	{ value: 'titleDesc', label: 'Title Z–A' }
-// ]
+import { useShowFilters } from '../hooks'
 
 const Filters = ({ value, onChange, genresOptions = [] }) => {
+	const { setShowFilters, deleteShowFilters } = useShowFilters()
 	const [genreSearch, setGenreSearch] = useState('')
 
 	const filteredGenres = useMemo(() => {
@@ -22,6 +16,13 @@ const Filters = ({ value, onChange, genresOptions = [] }) => {
 	const toggleGenre = g => {
 		const next = new Set(value.genres)
 		next.has(g) ? next.delete(g) : next.add(g)
+
+		if (next.size === 0) {
+			deleteShowFilters(['genres'])
+		} else {
+			setShowFilters({ genres: Array.from(next).join(',') })
+		}
+
 		onChange({ ...value, genres: next })
 	}
 

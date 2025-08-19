@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import { useEffect } from 'react'
+import { useSearchParams } from 'react-router-dom'
 import { adaptGetTvShowsPerPage } from '../api/adaptGetTvShowsPerPage'
+import { getFiltersFromUrl } from '../utils'
 
-export const useTvShowsPages = tvPage => {
+export const useTvShowsPages = () => {
+	const [searchParams] = useSearchParams()
+	const { page } = getFiltersFromUrl(searchParams)
 	const [data, setData] = useState([])
 	const [loading, setLoading] = useState(false)
 	const [error, setError] = useState(null)
@@ -12,7 +16,7 @@ export const useTvShowsPages = tvPage => {
 			setLoading(true)
 			setError(null)
 			try {
-				const res = await fetch(`https://api.tvmaze.com/shows?page=${tvPage}`)
+				const res = await fetch(`https://api.tvmaze.com/shows?page=${page}`)
 				const rawData = await res.json()
 				const normalized = adaptGetTvShowsPerPage(rawData)
 				setData(normalized)
@@ -23,7 +27,7 @@ export const useTvShowsPages = tvPage => {
 			}
 		}
 		fetchPage()
-	}, [tvPage])
+	}, [page])
 
 	const stats = {
 		total: data.length,

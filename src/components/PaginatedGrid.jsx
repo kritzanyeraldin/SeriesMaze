@@ -1,16 +1,24 @@
 import ReactPaginate from 'react-paginate'
 import TvShowCard from './TvShowCard'
+import { useShowFilters } from '../hooks'
 
-const PaginatedGrid = ({ tvPage, setTvPage, data, loading, error }) => {
+const PaginatedGrid = ({ data, loading, error }) => {
+	const { showFilters, setShowFilters } = useShowFilters()
 	const handlePageClick = ({ selected }) => {
-		setTvPage(selected)
-		window.scrollTo({ top: 0, behavior: 'smooth' })
+		document
+			.getElementById('main-layout')
+			?.scrollTo({ behavior: 'smooth', top: 0 })
+		setShowFilters({ page: selected + 1 })
 	}
 
 	return (
 		<div className='space-y-6  h-full '>
 			{loading && (
-				<div className='h-24 animate-pulse rounded-md bg-slate-800' />
+				<div
+					role='status'
+					aria-label='loading'
+					className='h-24 animate-pulse rounded-md bg-slate-800'
+				/>
 			)}
 			{error && (
 				<div className='rounded-md border border-red-500/40 bg-red-500/10 p-3 text-sm'>
@@ -38,7 +46,7 @@ const PaginatedGrid = ({ tvPage, setTvPage, data, loading, error }) => {
 					</div>
 
 					<ReactPaginate
-						forcePage={tvPage}
+						forcePage={showFilters.page}
 						onPageChange={handlePageClick}
 						pageCount={347}
 						pageRangeDisplayed={15}
@@ -51,6 +59,7 @@ const PaginatedGrid = ({ tvPage, setTvPage, data, loading, error }) => {
 						nextLinkClassName='px-3 py-1 rounded border border-slate-700 hover:bg-slate-700'
 						breakLabel='…'
 						breakLinkClassName='px-3 py-1 text-slate-400'
+						activeLinkClassName='bg-red-500'
 					/>
 				</>
 			)}
