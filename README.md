@@ -31,7 +31,7 @@ Aplicaci√≥n web construida con React para explorar series de TV usando la API p√
 ### 1. Clona el repositorio
 
 ```bash
-git clone git@github.com:kritzanyeraldin/modulo4-SullcaEspinoza-Kritzan.git
+git clone git@github.com:kritzanyeraldin/SeriesMaze.git
 
 cd seriesMaze
 ```
